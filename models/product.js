@@ -14,7 +14,21 @@ const productSchema = new mongoose.Schema({
     default: false,
   },
   rating: {
-    type: Boolean,
+    type: Number,
     default: 3.5,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  company: {
+    type: String,
+    enum: {
+      values: ["ikea", "liddy", "caressa", "marcos"],
+      message: "{VALUE} is not supported",
+    },
+    // enum: ["ikea", "liddy", "caressa", "marcos"],
+  },
 })
+
+module.exports = mongoose.model("Porduct", productSchema)
